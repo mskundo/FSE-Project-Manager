@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cognizant.entity.Project;
+import com.cognizant.entity.User;
 import com.cognizant.model.ProjectRecord;
+import com.cognizant.model.UserRecord;
 import com.cognizant.repository.ProjectRepository;
 
 @Transactional
@@ -32,6 +34,9 @@ public class ProjectService {
 		project.setEndDate(projectRecord.endDate);
 		project.setPriority(projectRecord.priority);
 		projectRepository.save(project);
+		UserRecord r=new UserRecord();
+		User r1=userService.saveUser(r);
+		r1.setProjectId(projectRecord.projectId);
 		return projectRecord;
 	}
 
